@@ -1,0 +1,40 @@
+name: PlexTraktSync
+version: "0.1.0"  # Start with a low version number and increment.
+slug: plextraktsync  #  Must match the directory name (lowercase, no spaces)
+description: "Syncs watch history and/or ratings between Plex and Trakt.tv using PlexTraktSync."
+arch:  # Supported architectures (check the PlexTraktSync Docker image for supported archs)
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+url: "https://github.com/yourusername/homeassistant-plextraktsync" # Replace with your repo URL!
+startup: application # Starts with main system. application is good for long running processes.
+boot: auto         # Starts automatically on boot.
+# image: taxel/plextraktsync:{arch}  <--NO LONGER NEEDED because we have our own Dockerfile now.
+options:
+  plex_token: ""      # Plex Token (REQUIRED)
+  trakt_username: "" # Trakt Username (REQUIRED)
+  trakt_client_id: ""  #Trakt client ID. REQUIRED
+  trakt_client_secret: "" #Trakt Client Secret. REQUIRED
+  sync_playback_progress: true # Sync playback progress (optional, default: true)
+  sync_ratings: true # Syncs Ratings,
+  sync_watchlist: true # Syncs watchlist,
+  sync_collection: true #Syncs collection.
+  plex_base_url: "" # OPTIONAL: Plex Base URL (if not using default)
+  log_level: "info"  # Log Level (optional, default: info) -  debug, info, warning, error, critical.
+  sync_interval: 3600 # how often, in seconds, to run a sync.  Default is 1 hour.
+schema:
+  plex_token: str
+  trakt_username: str
+  trakt_client_id: str
+  trakt_client_secret: str
+  sync_playback_progress: bool?
+  sync_ratings: bool?
+  sync_watchlist: bool?
+  sync_collection: bool?
+  plex_base_url: str?   # ? makes it optional
+  log_level: "str?"
+  sync_interval: "int?"
+ports: {}  # We don't need to expose any ports for this add-on.
+map: [] # no config or ssl mapping.
